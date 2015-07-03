@@ -64,7 +64,7 @@ $(function() {
 	}
 
 	function log(message, option) {
-		var $el = $('<li/>').addClass('log').text(message);
+		var $el = $('<li>').addClass('log').text(message);
 		addMessageElement($el, options);
 	}
 
