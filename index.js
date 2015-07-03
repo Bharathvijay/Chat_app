@@ -2,7 +2,7 @@
 var express = require('express');
 var app = express();
 var server = require('http').createServer(app);
-var io = require('../..')(server);
+var io = require('socket.io')(server);
 var port = process.env.PORT || 3000;
 
 //The variable declaraion
@@ -14,7 +14,7 @@ server.listen(port, function(){
 	console.log("Listening to port : %d", port);
 });
 
-app.use(express.static(__dirname + '/public'));
+app.use(express.static(__dirname + '/app'));
 
 io.on('connection', function(socket){
 	
@@ -34,7 +34,7 @@ io.on('connection', function(socket){
 		++userCount;
 		userAdded = true;
 		socket.emit('login', {
-			userCount : userCount;
+			userCount : userCount
 		});
 
 		socket.broadcast.emit('user joined', {
@@ -62,7 +62,7 @@ io.on('connection', function(socket){
 
 			socket.broadcast.emit('user left', {
 				username : socket.username,
-				userCount : userCount;
+				userCount : userCount
 			})
 		}
 	});
