@@ -7,10 +7,7 @@
     "start": "node index.js"
   },
   "keywords": [
-    "Chat",
-    "heroku",
-    "node",
-    "express"
+    "Chat"
   ],
   "engines": {
     "node": "0.12.2"
