@@ -20,9 +20,10 @@ $(function() {
 	var connected = false;
 	var typing = false;
 	var lastTypingTime ;
-	var currentInput = $usernameInput.focus();
+	var $currentInput = $usernameInput.focus();
 
 	var socket = io();
+	var options = {};
 
 	function addParticipantsMessage(data) {
 		var message = '';
@@ -63,7 +64,7 @@ $(function() {
 	}
 
 	function log(message, option) {
-		var $el = $('<li>').addClass('log').text(message);
+		var $el = $('<li/>').addClass('log').text(message);
 		addMessageElement($el, options);
 	}
 
@@ -103,7 +104,7 @@ $(function() {
 		});
 	}
 
-	function addMessageElement (el, options) {
+	function addMessageElement(el, options) {
 		var $el = $(el);
 
 		if(!options){
@@ -199,7 +200,7 @@ $(function() {
 		connected = true;
 
 		var message = "Welcome, ";
-		log(messages, {
+		log(message, {
 			prepend : true
 		});
 		addParticipantsMessage(data);
@@ -210,6 +211,7 @@ $(function() {
 	});
 
 	socket.on('user joined',function(data){
+		console.log('user jonied');
 		log(data.username + ' joined the conversation ! Yikes');
 		addParticipantsMessage(data);
 	});

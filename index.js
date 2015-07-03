@@ -17,7 +17,6 @@ server.listen(port, function(){
 app.use(express.static(__dirname + '/app'));
 
 io.on('connection', function(socket){
-	
 	var userAdded = false;
 
 	socket.on('new message', function(data){
